@@ -263,6 +263,7 @@ s3.player = (function() {
 
 	var playlist = function() {
 		if(typeof(localStorage.bucketList) === 'undefined') {
+			loadXMLDoc();
 			return false;
 		}
 		console.log("populating playlist")
@@ -400,7 +401,9 @@ s3.player = (function() {
 if(accessKey === '' || secret === '' || bucketName === '') {
 	resize(1);
 } else {
-	loadXMLDoc() 
+	resize(0);
+	s3.player.playlist();
+//	loadXMLDoc() 
 }
 s3.player.init();
 
