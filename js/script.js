@@ -5,9 +5,9 @@
 */
 window.s3 = {};
 
-var bucketName = localStorage.bucketName || (localStorage.bucketName = window.prompt("bucket name")),
-accessKey = localStorage.accessKey || (localStorage.accessKey = window.prompt("aws access key")),
-secret = localStorage.secret || (localStorage.secret = window.prompt("aws secret")),
+var bucketName = localStorage.bucketName || '',
+accessKey = localStorage.accessKey || '',
+secret = localStorage.secret || '',
 baseUrl = "https://" + bucketName + ".s3.amazonaws.com/",
 lastPlayed
 
@@ -22,6 +22,7 @@ $(creds).submit(function(){
 	baseUrl = "https://" + bucketName + ".s3.amazonaws.com/",
 
 	loadXMLDoc();
+	resize(0);
 	return false; // stop bubble up
 });
 
@@ -31,7 +32,6 @@ try{
 } catch(err) {
 	console.log("no local storage, get bucket list");
 }
-loadXMLDoc() 
 
 
 $(player)[0].play_notpause = true; // play
@@ -86,6 +86,7 @@ function httpDate(d) {
 
 function handleStateChange() {
 	if (this.readyState==4) {
+		
 		localStorage.bucketList = JSON.stringify(xmlToJson(this.responseXML));
 		console.log(localStorage.bucketList);
 		s3.player.playlist();
@@ -214,32 +215,32 @@ s3link = function(key){
 
 
 
-window.onresize = resize = function(showSettings) {
-	var latch;
-	return function(showSettings){
-		$(response).height(window.innerHeight - 88);
-		$(sidebar).height(window.innerHeight - 88);
-		$(settings).height(window.innerHeight - 88);
-		if(typeof(showSettings) === 'number'){
-			latch = showSettings;
+window.onresize = resize = function resizeClosure(showSettings) {
+		var latch;
+		return function(showSettings){
+			$(response).height(window.innerHeight - 88);
+			$(sidebar).height(window.innerHeight - 88);
+			$(settings).height(window.innerHeight - 88);
+			if(typeof(showSettings) === 'number'){
+				latch = showSettings;
+			}
+			if(typeof(latch) === 'undefined'){
+				latch = 0;
+			}
+			if(latch === 1){
+				console.log("settings");
+				$(settings).width(parseInt(window.innerWidth * .85));
+				$(response).width(0);
+				$(settings).show();
+			} else {
+				console.log("playlist");
+				$(settings).width(0);
+				$(response).width(parseInt(window.innerWidth * .85));
+			}
+			$(sidebar).width(parseInt(window.innerWidth * .15));
 		}
-		if(typeof(latch) === 'undefined'){
-			latch = 0;
-		}
-		if(latch === 1){
-			console.log("settings");
-			$(settings).width(parseInt(window.innerWidth * .85));
-			$(response).width(0);
-			$(settings).show();
-		} else {
-			console.log("playlist");
-			$(settings).width(0);
-			$(response).width(parseInt(window.innerWidth * .85));
-		}
-		$(sidebar).width(parseInt(window.innerWidth * .15));
-	}
-}();
-resize();
+	}();
+
 
 $(menu).children().first().click(function(){resize(0)});
 $(menu).children().first().next().click(function(){resize(1)});
@@ -396,5 +397,10 @@ s3.player = (function() {
     };
 })();
 
+if(accessKey === '' || secret === '' || bucketName === '') {
+	resize(1);
+} else {
+	loadXMLDoc() 
+}
 s3.player.init();
 
