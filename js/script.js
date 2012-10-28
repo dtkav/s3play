@@ -190,7 +190,8 @@ s3link = function(key){
 	url += accessKey;
 	url += "&Signature=";
 	
-	d = new Date(2012,8,20)
+	d = new Date()
+	d.setDate(d.getDate() + 1)
 	var http_date = httpDate(d);
 	var mydate = parseInt(d.getTime() / 1000)
 	// Build the string to sign for authentication.
