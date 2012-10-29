@@ -382,13 +382,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 	width: 100%;
 	height: 40px;
 	display: block;
-	background: url('/img/player_bg.png') repeat-x;
+	background: url('../img/player_bg.png') repeat-x;
 }
 
 button.player_control {
 	height: 40px;
 	width: 40px;
-	background: url('/img/img.png');
+	background: url('../img/img.png');
 	border: none;
 	margin: 0px;
 	padding: 0px;
