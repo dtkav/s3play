@@ -20,4 +20,4 @@ Go to the AWS management console and select S3 under services. Right click on th
     
 CORS stands for Cross-Origin Resource Sharing and allows a page hosted on github to access a page on a different host (in this case s3.amazonaws.com).If you clone this repo, make sure the AllowedOrigin matches your new url.
 
-Next, you can enter your AWS access credentials into the settings tab of the web app and click 'load library'. Your library should load in a few seconds. Finally, click a track and rock out :)
+Next, go to http://dtkav.github.com/s3play/ (or your new url) and enter your AWS access credentials into the settings tab of the web app and click 'load library'. Your library should load in a few seconds. Finally, click a track and rock out :)
