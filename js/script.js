@@ -131,7 +131,7 @@ function loadXMLDoc(url) {
 		
 	// Sign the string with our secret_key.
 	var signature = crypto.sha.aws(s, secret);
-	var auth = "AWS "+accessKey+:"+signature;
+	var auth = "AWS "+accessKey+":"+signature;
         console.log(s);		
 		
 	var xhr = new getXMLHttpRequest();
