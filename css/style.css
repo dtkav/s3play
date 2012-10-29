@@ -382,13 +382,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 	width: 100%;
 	height: 40px;
 	display: block;
+<<<<<<< HEAD
 	background: url('/img/player_bg.png') repeat-x;
+=======
+	background: url('../img/player_bg.png') repeat-x;
+>>>>>>> gh-pages
 }
 
 button.player_control {
 	height: 40px;
 	width: 40px;
+<<<<<<< HEAD
 	background: url('/img/img.png');
+=======
+	background: url('../img/img.png');
+>>>>>>> gh-pages
 	border: none;
 	margin: 0px;
 	padding: 0px;
