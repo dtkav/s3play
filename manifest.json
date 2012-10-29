@@ -1,0 +1,14 @@
+{
+  "name": "s3",
+  "version": "3",
+  "icons": { "24": "24.png", "128": "128.png" },
+  "app": {
+    "launch": {
+      "local_path": "index.html"
+    }
+
+
+
+  },
+  "permissions": ["https://*.s3.amazonaws.com/"]
+}
